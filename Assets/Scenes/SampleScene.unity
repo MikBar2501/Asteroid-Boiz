@@ -145,12 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  isTeleporting: 0
   speed: 0.1
-  screenTop: 5
-  screenBottom: -5
-  screenLeft: -11
-  screenRight: 11
   sprite: {fileID: 0}
 --- !u!212 &439000814
 SpriteRenderer:

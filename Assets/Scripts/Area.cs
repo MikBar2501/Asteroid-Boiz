@@ -20,27 +20,12 @@ public class Area : MonoBehaviour
     void Awake() {
         instance = this;
 
-        float screenHeight = Screen.height / 2;
-        float screenWidth = Screen.width / 2;
+        float screenHeight = transform.localScale.y / 2;
+        float screenWidth = transform.localScale.x / 2;
 
         screenTop = screenHeight;
         screenBottom = -screenHeight;
         screenRight = screenWidth;
         screenLeft = -screenWidth;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void OnTriggerEnter2D(Collider2D other) {
-        other.GetComponent<Object>().SetTeleportation(true);
-        Debug.Log("Coś koliduje");
-    }
-
-    public void OnTriggerExit2D(Collider2D other) {
-        other.GetComponent<Object>().SetTeleportation(true);
     }
 }

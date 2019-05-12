@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class Obiekt : MonoBehaviour
+public abstract class MovableObject : MonoBehaviour
 {
     public int health;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestObj : MovableObject
+public class Spawnable : MonoBehaviour
 {
-    
+    public int ID;
 }

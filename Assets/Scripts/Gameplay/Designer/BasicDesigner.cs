@@ -19,6 +19,7 @@ namespace Gameplay
             commands = new List<VirtualCommand>();
 
             VirtualCommand timer = new Command.Wait(5);
+            VirtualCommand levelEnd = new Command.WaitTillLevelEnd();
 
             PleacmentStrategy pleacment = new ScreenTopStrategy();
             UnleashStrategy unleash = new InstantUnleash();
@@ -29,7 +30,7 @@ namespace Gameplay
             for (int i = 0; i < 3; i++)
             {
                 commands.Add(spawn);
-                commands.Add(timer);
+                commands.Add(levelEnd);
             }
 
         }

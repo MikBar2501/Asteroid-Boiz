@@ -40,7 +40,6 @@ public abstract class MovableObject : MonoBehaviour
         
     }
 
-
     virtual public void Death() {
         Destroy(gameObject);
     }

@@ -10,5 +10,10 @@ namespace Gameplay.Command
         {
             GameManager.instance.onBeginLevel += Finish;
         }
+
+        protected override void OnFinish()
+        {
+            GameManager.instance.onBeginLevel -= Finish;
+        }
     }
 }

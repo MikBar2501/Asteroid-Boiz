@@ -15,7 +15,13 @@ namespace Gameplay
 
             public void Finish()
             {
+                OnFinish();
                 CommandsManager.instance.NextCommand();
+            }
+
+            protected virtual void OnFinish()
+            {
+
             }
         }
     }

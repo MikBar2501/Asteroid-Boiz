@@ -8,30 +8,37 @@ public abstract class MovableObject : MonoBehaviour
     public int health;
 
     public float speed;
+    public float angle;
     public Sprite sprite;
     Rigidbody2D rb;
+    //protected Vector3 moveVector;
+    protected Vector3 directionVector;
 
-    protected Vector3 moveVector;
-
-    virtual protected void Start() {
+    virtual public void Initialize() {
         if(sprite != null) {
             GetComponent<SpriteRenderer>().sprite = sprite;
         }
 
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
-        moveVector = transform.up * speed;
+        //moveVector = transform.up * speed;
     }
 
-    virtual protected void Update()
-    {
-        float angle = Input.GetAxis("Horizontal");
+    virtual protected void Start() {
+        Initialize();
+    }
 
-        if(Input.GetAxis("Vertical") > 0) {
-            Move();
-        } 
+    virtual public void Update()
+    {
+        //directionVector = new Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0);
+        //float angle = Input.GetAxis("Horizontal");
+
+        //if(Input.GetAxis("Vertical") > 0) {
+        Move();
+        //} 
         Rotation(angle);
         Teleportation();
+        LookAt();
 
         if(health == 0) {
             Death();
@@ -65,11 +72,21 @@ public abstract class MovableObject : MonoBehaviour
     }
 
     virtual public void Move() {
-        moveVector = transform.up * speed;
-        transform.position += moveVector;
+        //moveVector = transform.up * speed;
+        //transform.position += moveVector;
+        transform.position += directionVector.normalized * speed * Time.deltaTime;
+        Debug.Log("Speed: " + speed);
     }
 
     virtual public void Rotation(float direction) {
         transform.Rotate(new Vector3(0,0,5f) * -direction, Space.World);
+    }
+
+    virtual public void LookAt() {
+        Vector3 diff = (transform.position + directionVector) - transform.position;
+        diff.Normalize();
+
+        float rotZ = Mathf.Atan2(diff.y,diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f,0f, rotZ - 90);
     }
 }

@@ -10,6 +10,14 @@ public class TestObj : MovableObject
     public Vector3 dirVec;
     ResourcesObjectsCreator objectsCreator;
 
+    #region altMove
+    public float thrust;
+    public float turnThrust;
+    private float thrustInput;
+    private float turnInput;
+    private float turnMultiply = 5;
+    #endregion altMove
+
     public override void Initialize() {
         base.Initialize();
         base.directionVector = dirVec;
@@ -17,9 +25,21 @@ public class TestObj : MovableObject
         objectsCreator = new ResourcesObjectsCreator(1);
     }
 
+    //nadpisanie update na altMovement, na stary movement -> caly update do kosza
+    public override void Update()
+    {
+        //base.Update();
+        base.Teleportation();
+        
+    }
+
+    public void FixedUpdate() {
+        altMove();
+    }
+
     public override void Move() {
         
-        if(Input.GetButtonDown("Fire1")) {
+        if(Input.GetButtonDown("Fire1")) { //zmienilbym na Jump -> spacja zamiast myszki
             Action();
         }
         
@@ -30,6 +50,21 @@ public class TestObj : MovableObject
         } 
 
         
+    }
+
+    public void altMove() {
+        if (Input.GetButtonDown("Jump"))
+        {
+            base.directionVector = transform.up;
+            
+            Action();
+        }
+        thrustInput = Input.GetAxis("Vertical");
+        turnInput = Input.GetAxis("Horizontal");
+
+        rb.AddRelativeForce(Vector2.up * thrustInput);
+        //rb.AddTorque(-turnInput); za duza bezwladnosc
+        transform.Rotate(0, 0, -turnInput * turnMultiply, Space.Self);
     }
 
     protected override void ImplementCollisions()

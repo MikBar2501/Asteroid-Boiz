@@ -18,7 +18,7 @@ public abstract class MovableObject : MonoBehaviour
     public float speed;
     public float angle;
     public Sprite sprite;
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
     //protected Vector3 moveVector;
     protected Vector3 directionVector;
 

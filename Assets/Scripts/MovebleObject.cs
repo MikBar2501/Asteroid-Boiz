@@ -57,6 +57,8 @@ public abstract class MovableObject : MonoBehaviour
         Rotation(angle);
         Teleportation();
         LookAt();
+
+        
         
     }
 

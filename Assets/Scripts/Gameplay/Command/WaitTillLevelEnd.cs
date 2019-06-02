@@ -8,6 +8,7 @@ namespace Gameplay.Command
     {
         public override void Execute()
         {
+            base.Execute();
             GameManager.instance.onBeginLevel += Finish;
         }
 

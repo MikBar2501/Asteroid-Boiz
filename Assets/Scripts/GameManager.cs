@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     {
         state = State.playing;
 
-        AbstractDesigner designer = new BasicDesigner();
+        AbstractDesigner designer = new InfiniteDesign();
         CommandsManager commandsManager = new CommandsManager(designer);
         commandsManager.NextCommand();
     }

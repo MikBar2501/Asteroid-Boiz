@@ -26,6 +26,7 @@ namespace Gameplay.Command
 
         public override void Execute()
         {
+            base.Execute();
             ObjectsGenerator.Generate(this);
             float delay = unleash.HowLongWillYouTake();
             Timer.WaitForSeconds(delay, Finish);

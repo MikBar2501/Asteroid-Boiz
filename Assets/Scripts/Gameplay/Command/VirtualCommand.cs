@@ -8,20 +8,30 @@ namespace Gameplay
     {
         public class VirtualCommand
         {
+            public delegate void FinishDel();
+            public FinishDel finish;
+
+            public VirtualCommand SetFinish(FinishDel finish)
+            {
+                this.finish = finish;
+                return this;
+            }
+
             public virtual void Execute()
             {
-
+                if (finish == null)
+                    finish = CommandsManager.instance.NextCommand;
             }
 
             public void Finish()
             {
                 OnFinish();
-                CommandsManager.instance.NextCommand();
+                finish?.Invoke();
             }
 
             protected virtual void OnFinish()
             {
-
+                
             }
         }
     }

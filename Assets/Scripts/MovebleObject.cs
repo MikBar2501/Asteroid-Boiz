@@ -48,18 +48,8 @@ public abstract class MovableObject : MonoBehaviour
 
     virtual public void Update()
     {
-        //directionVector = new Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0);
-        //float angle = Input.GetAxis("Horizontal");
-
-        //if(Input.GetAxis("Vertical") > 0) {
         Move();
-        //} 
-        Rotation(angle);
-        Teleportation();
-        LookAt();
-
-        
-        
+        Teleportation();           
     }
 
     virtual public void Demage(int dmg = 1)
@@ -104,7 +94,7 @@ public abstract class MovableObject : MonoBehaviour
         transform.Rotate(new Vector3(0,0,5f) * -direction, Space.World);
     }
 
-    virtual public void LookAt() {
+    public void LookAt() {
         Vector3 diff = (transform.position + directionVector) - transform.position;
         diff.Normalize();
 

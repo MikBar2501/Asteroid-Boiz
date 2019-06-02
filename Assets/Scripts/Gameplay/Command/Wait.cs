@@ -17,6 +17,7 @@ namespace Gameplay
 
             public override void Execute()
             {
+                base.Execute();
                 Timer.WaitForSeconds(5, Finish);
             }
         }

@@ -32,28 +32,12 @@ public class TestObj : MovableObject
         objectsCreator = new ResourcesObjectsCreator(1);
     }
 
-    //nadpisanie update na altMovement, na stary movement -> caly update do kosza
-    public override void Update()
+    public override void Move()
     {
-        //base.Update();
-        base.Teleportation();
-
-        transform.Rotate(0, 0, -turnInput * turnMultiply, Space.Self);
-
-        if (Input.GetButton("Jump"))
-        {
-            base.directionVector = transform.up;
-
-            Action();
-        }
-
-    }
-
-    public void FixedUpdate() {
         altMove();
     }
 
-    public override void Move() {
+    public void basicMove() {
         
         if(Input.GetButtonDown("Fire1")) { //zmienilbym na Jump -> spacja zamiast myszki
             Action();
@@ -85,14 +69,23 @@ public class TestObj : MovableObject
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
+
+        transform.Rotate(0, 0, -turnInput * turnMultiply, Space.Self);
+
+        if (Input.GetButton("Jump") || Input.GetButton("Fire1"))
+        {
+            base.directionVector = transform.up;
+
+            Action();
+        }
     }
 
     protected override void ImplementCollisions()
     {
         base.ImplementCollisions();
 
-        collisionActions.Add(ObjType.Asteroid, new Action.ActionDestroy());
-        collisionActions.Add(ObjType.Player, new Action.ActionDemage().Set(1));
+        collisionActions.Add(ObjType.Asteroid, new Action.ActionDemage().Set(1));
+        //collisionActions.Add(ObjType.Player, new Action.ActionDemage().Set(1));
     }
 
     public void Action() {

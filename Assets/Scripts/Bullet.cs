@@ -22,7 +22,7 @@ public class Bullet : MovableObject
     {
         base.ImplementCollisions();
 
-        collisionActions.Add(ObjType.Bullet, new Action.ActionDestroy());
+        //collisionActions.Add(ObjType.Bullet, new Action.ActionDestroy());
         collisionActions.Add(ObjType.Asteroid, new Action.ActionDemage().Set(1));
         Invoke("Death",timeToDestroy);
     }

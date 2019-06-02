@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using Action;
 using UnityEngine;
+using ObjectsCreator;
 
 public class TestObj : MovableObject
 {
 
     public Vector3 dirVec;
-    public GameObject bulletPrefab;
+    ResourcesObjectsCreator objectsCreator;
+
     public override void Initialize() {
         base.Initialize();
         base.directionVector = dirVec;
+
+        objectsCreator = new ResourcesObjectsCreator(1);
     }
 
     public override void Move() {
@@ -37,7 +41,10 @@ public class TestObj : MovableObject
     }
 
     public void Action() {
-        GameObject newBullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        GameObject newBullet = objectsCreator.Create();
+        newBullet.transform.position = transform.position;
+        newBullet.transform.rotation = transform.rotation;
+
         newBullet.GetComponent<Bullet>().SetDirectionVector(base.directionVector);
     }
 }

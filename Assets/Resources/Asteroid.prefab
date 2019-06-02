@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6272972235874552026}
   - component: {fileID: 3584057982340385170}
   - component: {fileID: 6830651383844126768}
-  - component: {fileID: 4933828182753897622}
+  - component: {fileID: 8762389574214137034}
   - component: {fileID: 757954016600775514}
-  - component: {fileID: 4874867727378796406}
+  - component: {fileID: 610260535969352148}
+  - component: {fileID: 4817199238578735641}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4835498177778287023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.83150375, y: 0.2047594, z: -0.095703125}
-  m_LocalScale: {x: 4, y: 4, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.25098044, g: 0.972549, b: 0.29240483, a: 1}
+  m_Sprite: {fileID: 21300000, guid: dd64c6baecf122b4f8827e94f9f36882, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
---- !u!114 &4933828182753897622
+--- !u!114 &8762389574214137034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4835498177778287023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09660db2ee582f946925004b556637a0, type: 3}
+  m_Script: {fileID: 11500000, guid: c83371390a42df3429936be6ed3064ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
@@ -113,6 +114,7 @@ MonoBehaviour:
   angle: 0
   sprite: {fileID: 0}
   type: 1
+  asteroidLevel: 4
 --- !u!50 &757954016600775514
 Rigidbody2D:
   serializedVersion: 4
@@ -134,8 +136,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &4874867727378796406
-BoxCollider2D:
+--- !u!58 &610260535969352148
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -147,16 +149,23 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.2}
-    newSize: {x: 0.2, y: 0.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0.019853324, y: -0.03350252}
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
-  m_EdgeRadius: 0
+  m_Radius: 0.30335584
+--- !u!114 &4817199238578735641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835498177778287023}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09660db2ee582f946925004b556637a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  speed: 2
+  angle: 0
+  sprite: {fileID: 0}
+  type: 1

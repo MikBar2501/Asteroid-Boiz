@@ -10,6 +10,11 @@ public class TestObj : MovableObject
     public Vector3 dirVec;
     ResourcesObjectsCreator objectsCreator;
 
+    public Sprite ship;
+    public Sprite shipMed;
+    public Sprite shipFull;
+    private SpriteRenderer sprRenderer;
+
     private float fireRate = 0.5f;
     private float lastShot = 0.0f;
 
@@ -25,10 +30,13 @@ public class TestObj : MovableObject
     private float maxSpeed = 2; //to limit max force
     #endregion altMove
 
-    public override void Initialize() {
+    public override void Initialize()
+    {
         base.Initialize();
         base.directionVector = dirVec;
 
+        sprRenderer = GetComponent<SpriteRenderer>();
+        sprRenderer.sprite = ship;
         objectsCreator = new ResourcesObjectsCreator(1);
     }
 
@@ -37,31 +45,51 @@ public class TestObj : MovableObject
         altMove();
     }
 
-    public void basicMove() {
-        
-        if(Input.GetButtonDown("Fire1")) { //zmienilbym na Jump -> spacja zamiast myszki
+    public void basicMove()
+    {
+
+        if (Input.GetButtonDown("Fire1"))
+        { //zmienilbym na Jump -> spacja zamiast myszki
             Action();
         }
-        
-        if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
-            base.directionVector = new Vector3(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"),0);
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            base.directionVector = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
             dirVec = base.directionVector;
             transform.position += directionVector.normalized * speed * Time.deltaTime;
-        } 
+        }
 
-        
+
     }
 
-    public void altMove() {
+    public void altMove()
+    {
         thrustInput = Input.GetAxis("Vertical");
         turnInput = Input.GetAxis("Horizontal");
 
-        if (Input.GetButton("Fire3")) { //left shift
+        if (Input.GetButton("Fire3"))
+        { //left shift
             rb.drag = breakSpeed;
         }
-        if (Input.GetButtonUp("Fire3")) {
+        if (Input.GetButtonUp("Fire3"))
+        {
             rb.drag = zeroDrag;
         }
+
+        if (thrustInput != 0)
+        {
+            sprRenderer.sprite = shipFull;
+        }
+        else
+        {
+            if (rb.velocity.magnitude > 0)
+                sprRenderer.sprite = shipMed;
+            else
+                sprRenderer.sprite = ship;
+
+        }
+
 
         rb.AddRelativeForce(Vector2.up * thrustInput * thrustForce);
         //rb.AddTorque(-turnInput); za duza bezwladnosc
@@ -88,8 +116,10 @@ public class TestObj : MovableObject
         //collisionActions.Add(ObjType.Player, new Action.ActionDemage().Set(1));
     }
 
-    public void Action() {
-        if (Time.time > lastShot) {
+    public void Action()
+    {
+        if (Time.time > lastShot)
+        {
             GameObject newBullet = objectsCreator.Create();
             newBullet.transform.position = transform.position + (transform.up * 0.5f);
             newBullet.transform.rotation = transform.rotation;
@@ -98,6 +128,6 @@ public class TestObj : MovableObject
 
             lastShot = Time.time + fireRate;
         }
-        
+
     }
 }

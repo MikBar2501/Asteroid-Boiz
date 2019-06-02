@@ -12,20 +12,13 @@ public class Area : MonoBehaviour
     public float screenLeft;
     public float screenRight;
 
-    void Start()
-    {
-        
-    }
-
     void Awake() {
         instance = this;
+        Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
 
-        float screenHeight = transform.localScale.y / 2;
-        float screenWidth = transform.localScale.x / 2;
-
-        screenTop = screenHeight;
-        screenBottom = -screenHeight;
-        screenRight = screenWidth;
-        screenLeft = -screenWidth;
+        screenTop = stageDimensions.y;
+        screenBottom = -stageDimensions.y;
+        screenRight = stageDimensions.x;
+        screenLeft = -stageDimensions.x;
     }
 }

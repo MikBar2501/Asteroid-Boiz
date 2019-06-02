@@ -40,6 +40,7 @@ namespace Generator.Strategy.Unleash
                 if(objects.Length > iterator)
                 {
                     objects[iterator].SetActive(true);
+                    objects[iterator].GetComponent<MovableObject>().SetDirection(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0));
                 }
                 else
                 {

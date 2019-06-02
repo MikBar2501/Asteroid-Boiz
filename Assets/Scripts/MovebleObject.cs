@@ -25,6 +25,11 @@ public abstract class MovableObject : MonoBehaviour
     public ObjType type;
     protected Dictionary<ObjType, AbstractAction> collisionActions;
 
+    public void SetDirection(Vector3 dir)
+    {
+        directionVector = dir;
+    }
+
     protected virtual void ImplementCollisions()
     {
         collisionActions = new Dictionary<ObjType, AbstractAction>();

@@ -8,7 +8,7 @@ public class LevelObject : MovableObject
     {
         base.Initialize();
         GameManager.instance.AddLevelObject(gameObject);
-        directionVector = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0);
+        //directionVector = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0);
     }
 
     protected override void ImplementCollisions()

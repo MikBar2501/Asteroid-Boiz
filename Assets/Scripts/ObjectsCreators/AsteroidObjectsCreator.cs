@@ -18,6 +18,7 @@ namespace ObjectsCreator
             int id = rand.GetNextID();
 
             GameObject obj = base.Create();
+
             //obj. //przypisz liczbe
             return obj;
         }

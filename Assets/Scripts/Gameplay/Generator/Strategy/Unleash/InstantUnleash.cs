@@ -14,7 +14,10 @@ namespace Generator.Strategy.Unleash
         public override void Unleash(GameObject[] objects)
         {
             foreach (GameObject obj in objects)
+            {
                 obj.SetActive(true);
+                obj.GetComponent<MovableObject>().SetDirection((-obj.transform.position).normalized);
+            }
         }
     }
 }

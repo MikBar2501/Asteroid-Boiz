@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Action;
+
+public enum ObjType
+{
+    Player,
+    Asteroid,
+    Bullet
+}
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class MovableObject : MonoBehaviour
 {
-    public int health;
+    public int health = 1;
 
     public float speed;
     public float angle;
@@ -14,6 +22,14 @@ public abstract class MovableObject : MonoBehaviour
     //protected Vector3 moveVector;
     protected Vector3 directionVector;
 
+    public ObjType type;
+    protected Dictionary<ObjType, AbstractAction> collisionActions;
+
+    protected virtual void ImplementCollisions()
+    {
+        collisionActions = new Dictionary<ObjType, AbstractAction>();
+    }
+
     virtual public void Initialize() {
         if(sprite != null) {
             GetComponent<SpriteRenderer>().sprite = sprite;
@@ -21,10 +37,12 @@ public abstract class MovableObject : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
+
+        ImplementCollisions();
         //moveVector = transform.up * speed;
     }
 
-    virtual protected void Start() {
+    void Start() {
         Initialize();
     }
 
@@ -39,12 +57,14 @@ public abstract class MovableObject : MonoBehaviour
         Rotation(angle);
         Teleportation();
         LookAt();
-
-        if(health == 0) {
-            Death();
-        }
-
         
+    }
+
+    virtual public void Demage(int dmg = 1)
+    {
+        health -= dmg;
+        if (health <= 0)
+            Death();
     }
 
     virtual public void Death() {
@@ -88,5 +108,23 @@ public abstract class MovableObject : MonoBehaviour
 
         float rotZ = Mathf.Atan2(diff.y,diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f,0f, rotZ - 90);
+    }
+
+    public void Collide(ObjType type)
+    {
+        AbstractAction action;
+        if(collisionActions.TryGetValue(type, out action))
+        {
+            action.Action(this);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        MovableObject obj = collision.GetComponent<MovableObject>();
+        if (obj != null)
+        {
+            Collide(obj.type);
+        }
     }
 }

@@ -14,11 +14,11 @@ public class Area : MonoBehaviour
 
     void Awake() {
         instance = this;
-        Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+        Vector3 stageDimensions = Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight, Camera.main.pixelWidth));
 
-        screenTop = stageDimensions.y;
-        screenBottom = -stageDimensions.y;
-        screenRight = stageDimensions.x;
-        screenLeft = -stageDimensions.x;
+        screenTop = Mathf.Abs(stageDimensions.y);
+        screenBottom = -Mathf.Abs(stageDimensions.y);
+        screenRight = Mathf.Abs(stageDimensions.x);
+        screenLeft = -Mathf.Abs(stageDimensions.x);
     }
 }

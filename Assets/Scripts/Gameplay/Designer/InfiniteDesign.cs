@@ -27,7 +27,7 @@ namespace Gameplay
             timer = new Command.Wait(10);
             levelEnd = new Command.WaitTillLevelEnd();
 
-            PleacmentStrategy pleacment = new RandomAroundScreen().Set(-0.3f, 0.5f);
+            PleacmentStrategy pleacment = new RandomAroundScreen().Set(0f, 0.5f);
             UnleashStrategy unleashOneByOne = new UnleashOverTime().Set(1, 1f);
             UnleashStrategy unleashInstant = new InstantUnleash();
             AbstractObjectsCreator objectsCreator = new AsteroidObjectsCreator(1);

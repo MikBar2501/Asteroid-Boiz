@@ -25,6 +25,8 @@ public abstract class MovableObject : MonoBehaviour
     public ObjType type;
     protected Dictionary<ObjType, AbstractAction> collisionActions;
 
+    float teleportationOffset = 1;
+
     public void SetDirection(Vector3 dir)
     {
         directionVector = dir;
@@ -70,19 +72,19 @@ public abstract class MovableObject : MonoBehaviour
 
     virtual public void Teleportation() {
         Vector3 newPos = transform.position;
-        if(transform.position.y > Area.instance.screenTop) {
+        if(transform.position.y > Area.instance.screenTop + teleportationOffset) {
             newPos.y = Area.instance.screenBottom;
         }
 
-        if(transform.position.y < Area.instance.screenBottom) {
+        if(transform.position.y < Area.instance.screenBottom - teleportationOffset) {
             newPos.y = Area.instance.screenTop;
         }
 
-        if(transform.position.x > Area.instance.screenRight) {
+        if(transform.position.x > Area.instance.screenRight + teleportationOffset) {
             newPos.x = Area.instance.screenLeft;
         }
 
-        if(transform.position.x < Area.instance.screenLeft) {
+        if(transform.position.x < Area.instance.screenLeft - teleportationOffset) {
             newPos.x = Area.instance.screenRight;
         }
         transform.position = newPos;

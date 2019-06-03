@@ -35,7 +35,7 @@ public class Asteroid : MovableObject
     {
         PlaySound();
         // 
-        SplitOnDeath();
+        
         base.Death();
 
     }
@@ -44,7 +44,7 @@ public class Asteroid : MovableObject
     {
         base.health -= dmg;
         if (base.health <= 0)
-            Death();
+            SplitOnDeath();
     }
 
     public void SplitOnDeath()
@@ -65,6 +65,7 @@ public class Asteroid : MovableObject
             }
 
         }
+        base.Death();
     }
 
     public override void Move()

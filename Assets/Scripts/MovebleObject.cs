@@ -11,6 +11,7 @@ public enum ObjType
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public abstract class MovableObject : MonoBehaviour
 {
     public int health = 1;
@@ -26,6 +27,8 @@ public abstract class MovableObject : MonoBehaviour
     protected Dictionary<ObjType, AbstractAction> collisionActions;
 
     float teleportationOffset = 1;
+    public AudioClip mySound;
+    public AudioSource audioSource;
 
     public void SetDirection(Vector3 dir)
     {
@@ -46,6 +49,7 @@ public abstract class MovableObject : MonoBehaviour
         rb.gravityScale = 0;
 
         ImplementCollisions();
+        audioSource = GetComponent<AudioSource>();
         //moveVector = transform.up * speed;
     }
 
@@ -125,5 +129,11 @@ public abstract class MovableObject : MonoBehaviour
         {
             Collide(obj.type);
         }
+    }
+
+    virtual public void PlaySound() {
+        if(mySound == null) return;
+
+        audioSource.PlayOneShot(mySound);
     }
 }

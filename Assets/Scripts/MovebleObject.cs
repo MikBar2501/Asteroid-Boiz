@@ -139,6 +139,7 @@ public abstract class MovableObject : MonoBehaviour
     virtual public void PlaySound() {
         if(mySound == null) return;
 
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
         audioSource.PlayOneShot(mySound);
     }
 }

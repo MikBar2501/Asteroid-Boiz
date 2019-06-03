@@ -118,6 +118,8 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   asteroidLevel: 3
   stats: {fileID: 11400000, guid: afe53f53d1992cc40b78095c8e1dbf52, type: 2}
+  speakerOnDestroy: {fileID: 4405291815442907945, guid: 5a9fbd28ed934da428f722655124b992,
+    type: 3}
 --- !u!50 &757954016600775514
 Rigidbody2D:
   serializedVersion: 4

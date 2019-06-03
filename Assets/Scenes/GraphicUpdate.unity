@@ -149,6 +149,8 @@ MonoBehaviour:
   angle: 0
   sprite: {fileID: 0}
   type: 0
+  mySound: {fileID: 0}
+  audioSource: {fileID: 0}
   dirVec: {x: 0, y: 0, z: 0}
   ship: {fileID: 21300000, guid: 219a59861f386dd4bb69fce65d42a473, type: 3}
   shipMed: {fileID: 21300000, guid: 2a831fe448dead24e90322169b6bd7e1, type: 3}

@@ -94,7 +94,7 @@ public abstract class MovableObject : MonoBehaviour
         //moveVector = transform.up * speed;
         //transform.position += moveVector;
         transform.position += directionVector.normalized * speed * Time.deltaTime;
-        Debug.Log("Speed: " + speed);
+       // Debug.Log("Speed: " + speed);
     }
 
     virtual public void Rotation(float direction) {

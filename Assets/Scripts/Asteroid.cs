@@ -63,6 +63,12 @@ public class Asteroid : MovableObject
         Destroy(gameObject);
     }
 
+    public override void Move()
+    {
+        base.Move();
+        Rotation(angle);
+    }
+
     public void SetStats(AsteroidValues stats)
     {
         base.angle = base.speed / 2 * (Random.Range(stats.minMaxRotation.x, stats.minMaxRotation.y) < 50 ? 1 : -1);

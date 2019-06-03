@@ -27,9 +27,14 @@ public abstract class MovableObject : MonoBehaviour
 
     float teleportationOffset = 1;
 
-    public void SetDirection(Vector3 dir)
+    public virtual void SetDirection(Vector3 dir)
     {
         directionVector = dir;
+    }
+
+    public virtual void SetSpeed(float speed)
+    {
+        this.speed = speed;
     }
 
     protected virtual void ImplementCollisions()

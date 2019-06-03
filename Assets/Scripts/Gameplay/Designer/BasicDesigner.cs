@@ -22,8 +22,8 @@ namespace Gameplay
             VirtualCommand timer = new Command.Wait(5);
             VirtualCommand levelEnd = new Command.WaitTillLevelEnd();
 
-            PleacmentStrategy pleacment = new RandomAroundScreen().Set(1, 0.5f);
-            PleacmentStrategy pleacment2 = new RandomAroundScreen().Set(2, 0.5f);
+            PleacmentStrategy pleacment = new RandomAroundScreen().Set(1, 0.5f, true, true, true, true);
+            PleacmentStrategy pleacment2 = new RandomAroundScreen().Set(2, 0.5f, true, true, true, true);
             UnleashStrategy unleash = new UnleashOverTime().SetOverTime(2, 0.1f);
             AbstractObjectsCreator objectsCreator = new AsteroidObjectsCreator(1);
 

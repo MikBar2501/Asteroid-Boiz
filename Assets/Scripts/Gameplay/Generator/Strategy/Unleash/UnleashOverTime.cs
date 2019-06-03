@@ -12,6 +12,7 @@ namespace Generator.Strategy.Unleash
         int iterator = 0;
 
         GameObject[] objects;
+        protected bool setDirections = true;
 
         public UnleashOverTime SetOverTime(int atOnceNum, float delay)
         {
@@ -41,8 +42,11 @@ namespace Generator.Strategy.Unleash
                 if(objects.Length > iterator)
                 {
                     objects[iterator].SetActive(true);
-                    MovableObject mObj = objects[iterator].GetComponent<MovableObject>();
-                    mObj.SetDirection(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0));
+                    if (setDirections)
+                    {
+                        MovableObject mObj = objects[iterator].GetComponent<MovableObject>();
+                        mObj.SetDirection(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0));
+                    }
                 }
                 else
                 {

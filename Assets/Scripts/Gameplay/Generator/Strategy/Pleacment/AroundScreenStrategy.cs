@@ -14,10 +14,19 @@ namespace Generator.Strategy.Pleacment
         public float outOfScreenOffset;
         public float spacing;
 
-        public AroundScreenStrategy Set(float outOfScreenOffset, float spacing)
+        bool top;
+        bool bottom;
+        bool right;
+        bool left;
+
+        public AroundScreenStrategy Set(float outOfScreenOffset, float spacing, bool top, bool bottom, bool right, bool left)
         {
             this.outOfScreenOffset = outOfScreenOffset;
             this.spacing = spacing;
+            this.top = top;
+            this.bottom = bottom;
+            this.right = right;
+            this.left = left;
             return this;
         }
 
@@ -36,13 +45,17 @@ namespace Generator.Strategy.Pleacment
 
             for(float stepX = area.screenLeft + spacing; stepX < area.screenRight; stepX += spacing)
             {
+                if(top)
                 topSpots.Add(new Vector3(stepX, area.screenTop + outOfScreenOffset));
+                if(bottom)
                 bottomSpots.Add(new Vector3(stepX, area.screenBottom - outOfScreenOffset));
             }
 
             for (float stepY = area.screenBottom + spacing; stepY < area.screenTop; stepY += spacing)
             {
+                if(right)
                 rightSpots.Add(new Vector3(area.screenRight + outOfScreenOffset, stepY));
+                if(left)
                 leftSpots.Add(new Vector3(area.screenLeft - outOfScreenOffset, stepY));
             }
         }

@@ -30,9 +30,14 @@ public abstract class MovableObject : MonoBehaviour
     public AudioClip mySound;
     public AudioSource audioSource;
 
-    public void SetDirection(Vector3 dir)
+    public virtual void SetDirection(Vector3 dir)
     {
         directionVector = dir;
+    }
+
+    public virtual void SetSpeed(float speed)
+    {
+        this.speed = speed;
     }
 
     protected virtual void ImplementCollisions()

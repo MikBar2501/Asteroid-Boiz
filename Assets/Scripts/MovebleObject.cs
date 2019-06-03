@@ -70,6 +70,7 @@ public abstract class MovableObject : MonoBehaviour
 
     virtual public void Demage(int dmg = 1)
     {
+        PlaySound();
         health -= dmg;
         if (health <= 0)
             Death();

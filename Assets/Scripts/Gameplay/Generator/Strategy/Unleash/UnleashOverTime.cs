@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Generator.Strategy.Unleash
 {
-    public class UnleashOverTime : UnleashStrategy
+    public class UnleashOverTime : AsteroidsUnleash
     {
         int atOnceNum = 1;
         float delay = 0.5f;
@@ -13,7 +13,7 @@ namespace Generator.Strategy.Unleash
 
         GameObject[] objects;
 
-        public UnleashOverTime Set(int atOnceNum, float delay)
+        public UnleashOverTime SetOverTime(int atOnceNum, float delay)
         {
             this.atOnceNum = atOnceNum;
             this.delay = delay;
@@ -28,6 +28,7 @@ namespace Generator.Strategy.Unleash
 
         public override void Unleash(GameObject[] objects)
         {
+            base.Unleash(objects);
             iterator = 0;
             this.objects = objects;
             UnleashGroup();
@@ -40,7 +41,8 @@ namespace Generator.Strategy.Unleash
                 if(objects.Length > iterator)
                 {
                     objects[iterator].SetActive(true);
-                    objects[iterator].GetComponent<MovableObject>().SetDirection(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0));
+                    MovableObject mObj = objects[iterator].GetComponent<MovableObject>();
+                    mObj.SetDirection(new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0));
                 }
                 else
                 {

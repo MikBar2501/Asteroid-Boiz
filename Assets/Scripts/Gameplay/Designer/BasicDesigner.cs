@@ -24,7 +24,7 @@ namespace Gameplay
 
             PleacmentStrategy pleacment = new RandomAroundScreen().Set(1, 0.5f);
             PleacmentStrategy pleacment2 = new RandomAroundScreen().Set(2, 0.5f);
-            UnleashStrategy unleash = new UnleashOverTime().Set(2, 0.1f);
+            UnleashStrategy unleash = new UnleashOverTime().SetOverTime(2, 0.1f);
             AbstractObjectsCreator objectsCreator = new AsteroidObjectsCreator(1);
 
             VirtualCommand spawn = new Command.ObjectsGeneratorCommand(objectsCreator, pleacment, unleash, 10);

@@ -8,7 +8,9 @@ public enum State
 {
     preGame,
     playing,
-    levelFinished
+    levelFinished,
+    lookForLevelFinish,
+    playerDead
 }
 
 public class GameManager : MonoBehaviour
@@ -39,8 +41,26 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         UIManager.instance.ShowText("Level " + level);
+        UIManager.instance.SetScore(level);
 
         Invoke("InitializeGameplay", 3);
+
+        enabled = false;
+    }
+
+    public void SetState(State state)
+    {
+        if (this.state == State.playerDead)
+            return;
+
+        this.state = state;
+
+        switch(state)
+        {
+            case State.playerDead:
+                enabled = true;
+                break;
+        }
     }
 
     void InitializeGameplay()
@@ -59,6 +79,7 @@ public class GameManager : MonoBehaviour
         level++;
 
         UIManager.instance.ShowText("Level " + level);
+        UIManager.instance.SetScore(level);
 
         Invoke("BeginNextLevel", 3);
     }
@@ -72,9 +93,6 @@ public class GameManager : MonoBehaviour
 
     public void CheckForLevelEnd()
     {
-        if (state != State.playing)
-            return;
-
         if(IsLevelComplited())
         {
             OnLevelFinished();
@@ -88,6 +106,9 @@ public class GameManager : MonoBehaviour
 
     protected virtual bool IsLevelComplited()
     {
+        if (state != State.lookForLevelFinish)
+            return false;
+
         for (int i = levelObjects.Count - 1; i >= 0; i--)
         {
             if (levelObjects[i] == null)
@@ -99,15 +120,12 @@ public class GameManager : MonoBehaviour
         return levelObjects.Count == 0;
     }
 
-#if UNITY_EDITOR
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
+        if(Input.anyKeyDown)
         {
-            foreach (LevelObject levelObject in FindObjectsOfType<LevelObject>())
-                Destroy(levelObject.gameObject);
+            Application.LoadLevel(0);
         }
     }
-#endif
 
 }

@@ -10,6 +10,7 @@ namespace Gameplay.Command
         {
             base.Execute();
             GameManager.instance.onBeginLevel += Finish;
+            GameManager.instance.SetState(State.lookForLevelFinish);
         }
 
         protected override void OnFinish()

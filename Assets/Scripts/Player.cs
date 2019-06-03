@@ -4,7 +4,7 @@ using Action;
 using UnityEngine;
 using ObjectsCreator;
 
-public class TestObj : MovableObject
+public class Player : MovableObject
 {
 
     public Vector3 dirVec;
@@ -17,6 +17,8 @@ public class TestObj : MovableObject
 
     private float fireRate = 0.5f;
     private float lastShot = 0.0f;
+
+    public UI.HealthUI healthUI;
 
     #region altMove
     //public float thrust;
@@ -38,11 +40,26 @@ public class TestObj : MovableObject
         sprRenderer = GetComponent<SpriteRenderer>();
         sprRenderer.sprite = ship;
         objectsCreator = new ResourcesObjectsCreator(1);
+
+        healthUI.SetHealth(health);
     }
 
     public override void Move()
     {
         altMove();
+    }
+
+    public override void Demage(int dmg = 1)
+    {
+        base.Demage(dmg);
+        healthUI.SetHealth(health);
+        Camera.main.SendMessage("ShakeIt");
+    }
+
+    public override void Death()
+    {
+        base.Death();
+        UI.UIManager.instance.DeathSequence();
     }
 
     public void basicMove()

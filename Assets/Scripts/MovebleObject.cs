@@ -70,6 +70,7 @@ public abstract class MovableObject : MonoBehaviour
 
     virtual public void Demage(int dmg = 1)
     {
+        PlaySound();
         health -= dmg;
         if (health <= 0)
             Death();
@@ -139,6 +140,7 @@ public abstract class MovableObject : MonoBehaviour
     virtual public void PlaySound() {
         if(mySound == null) return;
 
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
         audioSource.PlayOneShot(mySound);
     }
 }

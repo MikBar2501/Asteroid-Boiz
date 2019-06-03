@@ -114,6 +114,8 @@ MonoBehaviour:
   angle: 0
   sprite: {fileID: 0}
   type: 1
+  mySound: {fileID: 8300000, guid: 7690dd87552112344aafe9d38ce58815, type: 3}
+  audioSource: {fileID: 0}
   asteroidLevel: 3
   stats: {fileID: 11400000, guid: afe53f53d1992cc40b78095c8e1dbf52, type: 2}
 --- !u!50 &757954016600775514

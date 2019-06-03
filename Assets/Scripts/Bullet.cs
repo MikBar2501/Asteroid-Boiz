@@ -11,6 +11,7 @@ public class Bullet : MovableObject
     public override void Initialize() {
         base.Initialize();
         base.directionVector = dirVector;
+        base.PlaySound();
     }
 
     public void SetDirectionVector(Vector3 direction) {

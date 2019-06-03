@@ -30,6 +30,7 @@ public class Asteroid : MovableObject
     }
     public override void Death()
     {
+        PlaySound();
         // base.Death();
         Destroy(gameObject);
 

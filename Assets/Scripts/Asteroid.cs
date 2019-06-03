@@ -8,6 +8,9 @@ public class Asteroid : MovableObject
     ObjectsCreator.ResourcesObjectsCreator objectsCreator;
     public int asteroidLevel;
     public AsteroidValues stats;
+
+    public GameObject speakerOnDestroy;
+
     public override void Initialize()
     {
         SetStats(stats);
@@ -30,8 +33,10 @@ public class Asteroid : MovableObject
     }
     public override void Death()
     {
-        // base.Death();
-        Destroy(gameObject);
+        PlaySound();
+        // 
+        SplitOnDeath();
+        base.Death();
 
     }
 
@@ -39,7 +44,7 @@ public class Asteroid : MovableObject
     {
         base.health -= dmg;
         if (base.health <= 0)
-            SplitOnDeath();
+            Death();
     }
 
     public void SplitOnDeath()
@@ -60,7 +65,6 @@ public class Asteroid : MovableObject
             }
 
         }
-        Destroy(gameObject);
     }
 
     public override void Move()
@@ -71,7 +75,7 @@ public class Asteroid : MovableObject
 
     public void SetStats(AsteroidValues stats)
     {
-        base.angle = base.speed / 2 * (Random.Range(stats.minMaxRotation.x, stats.minMaxRotation.y) < 50 ? 1 : -1);
+        base.angle = base.speed * 10 * (Random.Range(stats.minMaxRotation.x, stats.minMaxRotation.y) < 50 ? 1 : -1);
         base.health = stats.maxHealth;
         int maxPossibleAsteroidLvl = 0;
         if (stats.maxLevelOfAsteroid > stats.AsteroidSpriteList.Count - 1)
@@ -95,5 +99,10 @@ public class Asteroid : MovableObject
         base.sprite = stats.AsteroidSpriteList[asteroidLevel];
         gameObject.GetComponent<CircleCollider2D>().radius = stats.AsteroidRadiusList[asteroidLevel];
         objectsCreator = new ObjectsCreator.ResourcesObjectsCreator(stats.baseAsteroidID);
+    }
+
+    public override void PlaySound()
+    {
+        Instantiate(speakerOnDestroy);
     }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   minMaxRotation: {x: 0, y: 10}
   maxHealth: 1
   maxLevelOfAsteroid: 2
-  minMaxNumberOfNewAsteroidsCreated: {x: 1, y: 3}
+  minMaxNumberOfNewAsteroidsCreated: {x: 2, y: 3}
   baseAsteroidID: 0
   AsteroidSpriteList:
   - {fileID: 21300000, guid: e0e3c9922b8385e4383be5ae2592775a, type: 3}

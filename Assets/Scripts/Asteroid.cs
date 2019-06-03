@@ -10,13 +10,15 @@ public class Asteroid : MovableObject
     public AsteroidValues stats;
     public override void Initialize()
     {
+        SetStats(stats);
+
         base.Initialize();
+        Debug.Log("boop1");
         base.directionVector = new Vector3(Random.value, Random.value, 0);
         base.angle = Random.value * 10;
-        base.speed = Random.Range(0.8f, 2f);
+        base.speed = Random.Range(stats.minMaxSpeed.x, stats.minMaxSpeed.y);
         if (objectsCreator == null)
             objectsCreator = new ObjectsCreator.ResourcesObjectsCreator(stats.baseAsteroidID);
-        SetStats(stats);
 
     }
 
@@ -54,7 +56,6 @@ public class Asteroid : MovableObject
                 aster.transform.position = this.transform.position;
                 Asteroid asterScript = aster.GetComponent<Asteroid>();
                 asterScript.asteroidLevel = asteroidLevel - 1;
-                asterScript.SetStats(stats);
                 //asterScript.directionVector = (asterScript.directionVector + (directionVector * stats.parentMomentum)) / (1 + stats.parentMomentum); 
 
             }

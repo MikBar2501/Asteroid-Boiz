@@ -12,9 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947bfa14536ea594ea1194046522d7ed, type: 3}
   m_Name: Base Asteroid Values
   m_EditorClassIdentifier: 
-  parentMomentum: 0
   minMaxSpeed: {x: 0.8, y: 2}
   minMaxRotation: {x: 0, y: 10}
   maxHealth: 1
-  maxLevelOfAsteroid: 5
-  minMaxNumberOfNewAsteroidsCreated: {x: 0, y: 3}
+  maxLevelOfAsteroid: 2
+  minMaxNumberOfNewAsteroidsCreated: {x: 1, y: 3}
+  baseAsteroidID: 0
+  AsteroidSpriteList:
+  - {fileID: 21300000, guid: e0e3c9922b8385e4383be5ae2592775a, type: 3}
+  - {fileID: 21300000, guid: dd64c6baecf122b4f8827e94f9f36882, type: 3}
+  - {fileID: 21300000, guid: 8b36b1dccbe95a04ca0b4dbbc0fc48da, type: 3}
+  - {fileID: 21300000, guid: 659b61534acfbbd459168b0164c32c28, type: 3}
+  - {fileID: 21300000, guid: f36377408bb1852469c19aff392f7d2a, type: 3}
+  - {fileID: 21300000, guid: b04e33fa66be03b46b33028b1d0975b3, type: 3}
+  AsteroidRadiusList:
+  - 0.18
+  - 0.3
+  - 0.35
+  - 0.42
+  - 0.6
+  - 0.65
+  AsteroidLvlGrouping: 000000000000000001000000010000000200000002000000

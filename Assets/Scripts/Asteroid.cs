@@ -13,10 +13,7 @@ public class Asteroid : MovableObject
         SetStats(stats);
 
         base.Initialize();
-        Debug.Log("boop1");
-        base.directionVector = new Vector3(Random.value, Random.value, 0);
-        base.angle = Random.value * 10;
-        base.speed = Random.Range(stats.minMaxSpeed.x, stats.minMaxSpeed.y);
+
         if (objectsCreator == null)
             objectsCreator = new ObjectsCreator.ResourcesObjectsCreator(stats.baseAsteroidID);
 
@@ -57,6 +54,8 @@ public class Asteroid : MovableObject
                 Asteroid asterScript = aster.GetComponent<Asteroid>();
                 asterScript.asteroidLevel = asteroidLevel - 1;
                 //asterScript.directionVector = (asterScript.directionVector + (directionVector * stats.parentMomentum)) / (1 + stats.parentMomentum); 
+                asterScript.directionVector = new Vector3(Random.value, Random.value, 0);
+                asterScript.speed = Random.Range(stats.minMaxSpeed.x, stats.minMaxSpeed.y);
 
             }
 
@@ -66,8 +65,7 @@ public class Asteroid : MovableObject
 
     public void SetStats(AsteroidValues stats)
     {
-        base.speed = Random.Range(stats.minMaxSpeed.x, stats.minMaxSpeed.y);
-        base.angle = Random.Range(stats.minMaxRotation.x, stats.minMaxRotation.y);
+        base.angle = base.speed / 2 * (Random.Range(stats.minMaxRotation.x, stats.minMaxRotation.y) < 50 ? 1 : -1);
         base.health = stats.maxHealth;
         int maxPossibleAsteroidLvl = 0;
         if (stats.maxLevelOfAsteroid > stats.AsteroidSpriteList.Count - 1)

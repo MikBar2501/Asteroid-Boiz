@@ -71,7 +71,7 @@ public class Asteroid : MovableObject
 
     public void SetStats(AsteroidValues stats)
     {
-        base.angle = base.speed / 2 * (Random.Range(stats.minMaxRotation.x, stats.minMaxRotation.y) < 50 ? 1 : -1);
+        base.angle = base.speed * 10 * (Random.Range(stats.minMaxRotation.x, stats.minMaxRotation.y) < 50 ? 1 : -1);
         base.health = stats.maxHealth;
         int maxPossibleAsteroidLvl = 0;
         if (stats.maxLevelOfAsteroid > stats.AsteroidSpriteList.Count - 1)

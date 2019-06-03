@@ -103,7 +103,7 @@ public abstract class MovableObject : MonoBehaviour
     }
 
     virtual public void Rotation(float direction) {
-        transform.Rotate(new Vector3(0,0,5f) * -direction, Space.World);
+        transform.Rotate(new Vector3(0,0,5f) * -direction * Time.deltaTime, Space.World);
     }
 
     public void LookAt() {

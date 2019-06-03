@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4835498177778287023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.83150375, y: 0.2047594, z: -0.095703125}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b04e33fa66be03b46b33028b1d0975b3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0e3c9922b8385e4383be5ae2592775a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   mySound: {fileID: 8300000, guid: 7690dd87552112344aafe9d38ce58815, type: 3}
   audioSource: {fileID: 0}
   asteroidLevel: 3
-  stats: {fileID: 11400000, guid: afe53f53d1992cc40b78095c8e1dbf52, type: 2}
+  stats: {fileID: 11400000, guid: 4d7280eedd8a2a940926beff7f899b71, type: 2}
 --- !u!50 &757954016600775514
 Rigidbody2D:
   serializedVersion: 4
@@ -154,7 +154,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.65
+  m_Radius: 0.25
 --- !u!114 &7657933638010067082
 MonoBehaviour:
   m_ObjectHideFlags: 0

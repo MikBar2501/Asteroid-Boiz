@@ -7,7 +7,7 @@ public class AsteroidValues : ScriptableObject
 {
 
     [Header("Movement")]
-    //public float parentMomentum = 0;
+    public float parentSpeedBuildUp = 0;
     public Vector2 minMaxSpeed = new Vector2( 0.8f, 2f);
     public Vector2 minMaxRotation = new Vector2(0f, 10f);
 
@@ -24,7 +24,7 @@ public class AsteroidValues : ScriptableObject
     public int baseAsteroidID = 10;
     public List<Sprite> AsteroidSpriteList = new List<Sprite>();
     public List<float> AsteroidRadiusList = new List<float>();
-    public List<int> AsteroidLvlGrouping = new List<int>();
+    //public List<int> AsteroidLvlGrouping = new List<int>();
 
 
 

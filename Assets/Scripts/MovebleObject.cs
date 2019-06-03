@@ -26,7 +26,7 @@ public abstract class MovableObject : MonoBehaviour
     public ObjType type;
     protected Dictionary<ObjType, AbstractAction> collisionActions;
 
-    float teleportationOffset = 1;
+    float teleportationOffset = 0.7f;
     public AudioClip mySound;
     public AudioSource audioSource;
 

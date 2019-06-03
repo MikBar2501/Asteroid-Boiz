@@ -55,8 +55,8 @@ public class Asteroid : MovableObject
                 Asteroid asterScript = aster.GetComponent<Asteroid>();
                 asterScript.asteroidLevel = asteroidLevel - 1;
                 //asterScript.directionVector = (asterScript.directionVector + (directionVector * stats.parentMomentum)) / (1 + stats.parentMomentum); 
-                asterScript.directionVector = new Vector3(Random.value, Random.value, 0);
-                asterScript.speed = Random.Range(stats.minMaxSpeed.x, stats.minMaxSpeed.y);
+                asterScript.directionVector = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0);
+                asterScript.speed = Random.Range(stats.minMaxSpeed.x, stats.minMaxSpeed.y) + (stats.parentSpeedBuildUp * speed);
 
             }
 

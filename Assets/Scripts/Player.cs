@@ -100,7 +100,7 @@ public class Player : MovableObject
         }
         else
         {
-            if (rb.velocity.magnitude > 0)
+            if (rb.velocity.magnitude > 1.5f)
                 sprRenderer.sprite = shipMed;
             else
                 sprRenderer.sprite = ship;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Generator.Strategy.Unleash
 {
-    public class InstantUnleash : UnleashStrategy
+    public class InstantUnleash : AsteroidsUnleash
     {
         public override float HowLongWillYouTake()
         {
@@ -13,6 +13,7 @@ namespace Generator.Strategy.Unleash
 
         public override void Unleash(GameObject[] objects)
         {
+            base.Unleash(objects);
             foreach (GameObject obj in objects)
             {
                 obj.SetActive(true);

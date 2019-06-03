@@ -17,6 +17,10 @@ namespace Gameplay
         VirtualCommand timer;
         VirtualCommand levelEnd;
 
+        float[] asteroidsChances;
+        AsteroidObjectsCreator objectsCreator;
+        UnleashOverTime unleashOneByOne;
+
         public InfiniteDesign()
         {
             round = 0;
@@ -27,26 +31,50 @@ namespace Gameplay
             timer = new Command.Wait(10);
             levelEnd = new Command.WaitTillLevelEnd();
 
-            PleacmentStrategy pleacment = new RandomAroundScreen().Set(0f, 0.5f);
-            UnleashStrategy unleashOneByOne = new UnleashOverTime().Set(1, 1f);
-            UnleashStrategy unleashInstant = new InstantUnleash();
-            AbstractObjectsCreator objectsCreator = new AsteroidObjectsCreator(1);
+            PleacmentStrategy pleacment = new RandomAroundScreen().Set(0.75f, 0.5f);
+            unleashOneByOne = new UnleashOverTime()
+                .SetOverTime(1, 3f)
+                .SetAsteroidSpeed(1.4f) as UnleashOverTime;
+            UnleashStrategy unleashInstant = new InstantUnleash()
+                .SetAsteroidSpeed(0.7f);
+
+            objectsCreator = new AsteroidObjectsCreator(1);
 
             generatorCommands[0] = new Command.ObjectsGeneratorCommand(objectsCreator, pleacment, unleashInstant, 5);
-            generatorCommands[1] = new Command.ObjectsGeneratorCommand(objectsCreator, pleacment, unleashOneByOne, 7);
+            generatorCommands[1] = new Command.ObjectsGeneratorCommand(objectsCreator, pleacment, unleashOneByOne, 8);
+
+            asteroidsChances = new float[] { 5, 0, 0 };
         }
 
         public override VirtualCommand GetNextCommand()
         {
             round++;
 
-            if (round % 3 == 0)
-                waves++;
+            //if (round % 2 == 0)
+            {
+                if (round <= 6)
+                {
+                    asteroidsChances[1] += 0.5f;
+                }
+                else
+                {
+                    asteroidsChances[1] += 0.2f;
+                    asteroidsChances[2] += 0.5f;
+                }
+            }
 
-            if((round) % 9 == 0)
+            objectsCreator.ResetChances(asteroidsChances);
+
+            if (round % 3 == 0)
+            {
+                unleashOneByOne.SetOverTime(Random.Range(1, 4), Random.Range(0.5f, 2.5f));
+                waves++;
+            }
+
+            if((round) % 6 == 0)
                 foreach( ObjectsGeneratorCommand com in generatorCommands)
                 {
-                    com.objectsNum += 3;
+                    com.objectsNum += 1;
                 }
 
             List<VirtualCommand> commands = new List<VirtualCommand>();

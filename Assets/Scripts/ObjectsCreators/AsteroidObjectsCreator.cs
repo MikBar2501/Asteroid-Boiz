@@ -8,6 +8,11 @@ namespace ObjectsCreator
     {
         ChancesNormalized rand;
 
+        public void ResetChances(params float[] chances)
+        {
+            rand = new ChancesNormalized(chances);
+        }
+
         public AsteroidObjectsCreator(params float[] chances) : base(0)
         {
             rand = new ChancesNormalized(chances);
@@ -19,6 +24,7 @@ namespace ObjectsCreator
 
             GameObject obj = base.Create();
 
+            obj.GetComponent<Asteroid>().asteroidLevel = id;
             //obj. //przypisz liczbe
             return obj;
         }

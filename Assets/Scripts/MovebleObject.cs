@@ -73,19 +73,19 @@ public abstract class MovableObject : MonoBehaviour
     virtual public void Teleportation() {
         Vector3 newPos = transform.position;
         if(transform.position.y > Area.instance.screenTop + teleportationOffset) {
-            newPos.y = Area.instance.screenBottom;
+            newPos.y = Area.instance.screenBottom - teleportationOffset;
         }
 
         if(transform.position.y < Area.instance.screenBottom - teleportationOffset) {
-            newPos.y = Area.instance.screenTop;
+            newPos.y = Area.instance.screenTop + teleportationOffset;
         }
 
         if(transform.position.x > Area.instance.screenRight + teleportationOffset) {
-            newPos.x = Area.instance.screenLeft;
+            newPos.x = Area.instance.screenLeft - teleportationOffset;
         }
 
         if(transform.position.x < Area.instance.screenLeft - teleportationOffset) {
-            newPos.x = Area.instance.screenRight;
+            newPos.x = Area.instance.screenRight + teleportationOffset;
         }
         transform.position = newPos;
     }

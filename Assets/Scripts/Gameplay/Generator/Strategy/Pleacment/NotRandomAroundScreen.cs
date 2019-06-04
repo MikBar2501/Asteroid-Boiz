@@ -10,6 +10,7 @@ namespace Generator.Strategy.Pleacment
         {
             base.Arrange(objects);
 
+            int backOffset = 0;
             for (int i = 0; i < objects.Length; i++)
             {
                 GameObject obj = objects[i];
@@ -18,34 +19,39 @@ namespace Generator.Strategy.Pleacment
                 int offset = 0;
                 //if(i < topSpots.Count)
                 //{
-                if (i >= topSpots.Count)
+                if (i - backOffset >= topSpots.Count )
                 {
                     offset += topSpots.Count;
 
-                    if (i >= offset + bottomSpots.Count)
+                    if (i - backOffset >= offset + bottomSpots.Count)
                     {
                         offset += bottomSpots.Count;
 
-                        if (i >= offset + rightSpots.Count)
+                        if (i - backOffset >= offset + rightSpots.Count)
                         {
                             offset += rightSpots.Count;
 
-                            if (i >= offset + leftSpots.Count)
-                                return;
+                            if (i - backOffset >= offset + leftSpots.Count)
+                            {
+                                backOffset += offset + leftSpots.Count;
+                                i--;
+                                continue;
+                            }
 
-                            obj.transform.position = leftSpots[i - offset];
+
+                            obj.transform.position = leftSpots[i - offset - backOffset];
                             continue;
                         }
 
-                        obj.transform.position = rightSpots[i - offset];
+                        obj.transform.position = rightSpots[i - offset - backOffset];
                         continue;
                     }
 
-                    obj.transform.position = bottomSpots[i - offset];
+                    obj.transform.position = bottomSpots[i - offset - backOffset];
                     continue;
                 }
 
-                obj.transform.position = topSpots[i];
+                obj.transform.position = topSpots[i - backOffset];
                 continue;
                 // }
 

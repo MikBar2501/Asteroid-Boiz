@@ -28,7 +28,7 @@ public class Player : MovableObject
     //public float turnThrust;
     private float thrustInput;
     private float turnInput;
-    private float turnMultiply = 5;
+    public float turnMultiply = 5;
     private float maxSpeed = 2; //to limit max force
     #endregion altMove
 
@@ -115,7 +115,7 @@ public class Player : MovableObject
             rb.velocity = rb.velocity.normalized * maxSpeed;
         }
 
-        transform.Rotate(0, 0, -turnInput * turnMultiply, Space.Self);
+        transform.Rotate(0, 0, -turnInput * turnMultiply * Time.deltaTime, Space.Self);
 
         if (Input.GetButton("Jump") || Input.GetButton("Fire1"))
         {

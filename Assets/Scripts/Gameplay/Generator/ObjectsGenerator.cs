@@ -5,8 +5,6 @@ using UnityEngine;
 using Gameplay.Command;
 namespace Generator
 {
-    using Strategy.Pleacment;
-    using Strategy.Unleash;
 
     public static class ObjectsGenerator
     {

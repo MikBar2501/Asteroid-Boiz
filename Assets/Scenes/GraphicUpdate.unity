@@ -156,6 +156,7 @@ MonoBehaviour:
   shipMed: {fileID: 21300000, guid: 2a831fe448dead24e90322169b6bd7e1, type: 3}
   shipFull: {fileID: 21300000, guid: dcc30024ba97ab0459dc6ed7c4e0434d, type: 3}
   healthUI: {fileID: 1945692713}
+  turnMultiply: 200
 --- !u!212 &439000814
 SpriteRenderer:
   m_ObjectHideFlags: 0

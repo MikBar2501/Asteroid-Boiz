@@ -58,14 +58,14 @@ public class Asteroid : MovableObject
                 aster.transform.position = this.transform.position;
                 Asteroid asterScript = aster.GetComponent<Asteroid>();
                 asterScript.asteroidLevel = asteroidLevel - 1;
-                //asterScript.directionVector = (asterScript.directionVector + (directionVector * stats.parentMomentum)) / (1 + stats.parentMomentum); 
                 asterScript.directionVector = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0);
+                asterScript.directionVector = ((asterScript.directionVector + (directionVector * stats.parentDirectionInfuence)) / (1 + stats.parentDirectionInfuence)).normalized; 
                 asterScript.speed = Random.Range(stats.minMaxSpeed.x, stats.minMaxSpeed.y) + (stats.parentSpeedBuildUp * speed);
 
             }
 
         }
-        base.Death();
+        Death();
     }
 
     public override void Move()
@@ -104,6 +104,6 @@ public class Asteroid : MovableObject
 
     public override void PlaySound()
     {
-        Instantiate(speakerOnDestroy);
+        Instantiate(speakerOnDestroy, gameObject.transform.position, gameObject.transform.rotation);
     }
 }

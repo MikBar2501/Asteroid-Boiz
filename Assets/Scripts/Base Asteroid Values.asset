@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947bfa14536ea594ea1194046522d7ed, type: 3}
   m_Name: Base Asteroid Values
   m_EditorClassIdentifier: 
-  parentSpeedBuildUp: 0.3
+  parentSpeedBuildUp: 0.2
+  parentDirectionInfuence: 2
   minMaxSpeed: {x: 0.8, y: 2}
   minMaxRotation: {x: 0, y: 4}
   maxHealth: 1
   maxLevelOfAsteroid: 2
   minMaxNumberOfNewAsteroidsCreated: {x: 2, y: 3}
-
   baseAsteroidID: 0
   AsteroidSpriteList:
   - {fileID: 21300000, guid: e0e3c9922b8385e4383be5ae2592775a, type: 3}

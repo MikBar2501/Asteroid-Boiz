@@ -14,10 +14,8 @@ namespace Gameplay
     {
         List<VirtualCommand> commands;
 
-        public BasicDesigner() //może jakieś losowe generowanie rund, ktore bedzie coraz trudniejsze
+        public BasicDesigner()
         {
-            //dopisz coś co encapsuluje commendy tak zeby mozna ich bylo uzyc jako jednej komendy - wzorzec kompisite. 
-            //Potem bedziesz mial takie paczki, ktore beda losowane przez designer
 
             VirtualCommand timer = new Command.Wait(5);
             VirtualCommand levelEnd = new Command.WaitTillLevelEnd();
